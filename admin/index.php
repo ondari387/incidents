@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 	<link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link type="text/css" href="css/theme.css" rel="stylesheet">
 	<link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
-	<link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+	<link type="text/css" href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
 </head>
 
 <body>
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
 
 					<ul class="nav pull-right">
 
-						<li><a href="http://localhost/incidents/index.php">
+						<li><a href="../index.php">
 								Back to Portal
 
 							</a></li>

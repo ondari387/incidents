@@ -78,13 +78,14 @@ if (isset($_POST['submit'])) {
     </nav>
 
 
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="container text-center my-4">
-            <h1 class="font-size:40px;" style="color:#0671B9">Hi, Thank you for helping.</h1>
-            <p class="col-md-8 m-auto">Please be detailed. All communication is anonymous and encrypted</p>
+    <div class="container">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="container text-center my-4">
+                <h1 class="font-size:40px;" style="color:#0671B9">Hi, Thank you for helping.</h1>
+                <p class="col-md-8 m-auto">Please be detailed. All communication is anonymous and encrypted</p>
 
-        </div>
-        <!-- <div class="container">
+            </div>
+            <!-- <div class="container">
             <?php if ($successmsg) { ?>
                 <div class="alert alert-success alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -100,104 +101,105 @@ if (isset($_POST['submit'])) {
             <?php } ?>
         </div> -->
 
-        <form class="container col-md-6 m-auto" method="post" name="complaint" enctype="multipart/form-data">
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label>College</label>
+            <form class="container col-md-6 m-auto" method="post" name="complaint" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label>College</label>
+                        <div class="">
+                            <select name="college_name" id="college_name" class="form-control">
+                                <option value="">Select college</option>
+                                <?php $sql = mysqli_query($bd, "select * from colleges ");
+                                while ($rw = mysqli_fetch_array($sql)) {
+                                ?>
+                                    <option value="<?php echo htmlentities($rw['college_name']); ?>"><?php echo htmlentities($rw['college_name']); ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>School</label>
+                        <div class="">
+                            <select name="school_name" id="school_name" class="form-control">
+                                <option value="">Select school</option>
+                                <?php $sql = mysqli_query($bd, "select id, school_name from school ");
+                                while ($rw = mysqli_fetch_array($sql)) {
+                                ?>
+                                    <option value="<?php echo htmlentities($rw['school_name']); ?>"><?php echo htmlentities($rw['school_name']); ?></option>
+                                <?php
+                                }
+                                ?>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label>Department</label>
+                        <div class="">
+                            <select name="department_name" id="department_name" class="form-control">
+                                <option value="">Select department</option>
+                                <?php $sql = mysqli_query($bd, "select * from departments ");
+                                while ($rw = mysqli_fetch_array($sql)) {
+                                ?>
+                                    <option value="<?php echo htmlentities($rw['department_name']); ?>"><?php echo htmlentities($rw['department_name']); ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Year</label>
+                        <div class="">
+                            <select name="school_name" id="school_name" class="form-control">
+                                <option value="">Select year</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="4">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="">Subject</label>
                     <div class="">
-                        <select name="college_name" id="college_name" class="form-control">
-                            <option value="">Select college</option>
-                            <?php $sql = mysqli_query($bd, "select * from colleges ");
-                            while ($rw = mysqli_fetch_array($sql)) {
-                            ?>
-                                <option value="<?php echo htmlentities($rw['college_name']); ?>"><?php echo htmlentities($rw['college_name']); ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
+                        <input type="text" name="subject" id="subject" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label>School</label>
-                    <div class="">
-                        <select name="school_name" id="school_name" class="form-control">
-                            <option value="">Select school</option>
-                            <?php $sql = mysqli_query($bd, "select id, school_name from school ");
-                            while ($rw = mysqli_fetch_array($sql)) {
-                            ?>
-                                <option value="<?php echo htmlentities($rw['school_name']); ?>"><?php echo htmlentities($rw['school_name']); ?></option>
-                            <?php
-                            }
-                            ?>
-
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Provide more info <span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="incident" placeholder="Please provide as much details as possible" rows="3"></textarea>
                 </div>
 
-            </div>
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label>Department</label>
-                    <div class="">
-                        <select name="department_name" id="department_name" class="form-control">
-                            <option value="">Select department</option>
-                            <?php $sql = mysqli_query($bd, "select * from departments ");
-                            while ($rw = mysqli_fetch_array($sql)) {
-                            ?>
-                                <option value="<?php echo htmlentities($rw['department_name']); ?>"><?php echo htmlentities($rw['department_name']); ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Attach Supporting Files</label>
+                    <input type="file" class="form-control-file" name="incident_file">
                 </div>
-                <div class="col-md-6">
-                    <label>Year</label>
-                    <div class="">
-                        <select name="school_name" id="school_name" class="form-control">
-                            <option value="">Select year</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="4">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-
-                        </select>
-                    </div>
-                </div>
-
+                <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <hr class="container text-center mt-4">
+        <div class="footer">
+            <div class="container">
+                <b class="copyright">&copy; IRS </b> All rights reserved.
+                <a href="index.php" class="float-right">Back to home</a>
             </div>
-            <div class="form-group">
-                <label for="">Subject</label>
-                <div class="">
-                    <input type="text" name="subject" id="subject" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Provide more info <span class="text-danger">*</span></label>
-                <textarea class="form-control" name="incident" placeholder="Please provide as much details as possible" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlFile1">Attach Supporting Files</label>
-                <input type="file" class="form-control-file" name="incident_file">
-            </div>
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <hr class="container text-center mt-4">
-    <div class="footer">
-        <div class="container">
-            <b class="copyright">&copy; IRS </b> All rights reserved.
-            <a href="index.php" class="float-right">Back to home</a>
         </div>
     </div>
 
-    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-    <script src="scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
 </body>
 
 </html>
